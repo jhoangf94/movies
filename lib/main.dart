@@ -13,6 +13,14 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         'detail': (BuildContext context) => DetailMovie()
       },
+      theme: ThemeData(
+        primaryColor: Colors.redAccent,
+        primaryTextTheme: TextTheme(
+          title: TextStyle(
+            color: Colors.redAccent
+          )
+        )
+      ),
       title: 'Material App',
       home: HomePage()
     );

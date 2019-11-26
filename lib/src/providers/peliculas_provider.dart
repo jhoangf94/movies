@@ -56,4 +56,15 @@ class PeliculasProvider extends BaseProvider {
       popularesSink(_populares);
     }
   }
+
+  Future<List<Pelicula>> searchMovies( String query) {
+    Uri url = Uri.https(apiUrl, '/3/search/movie', {
+      'api_key': apiKey,
+      'language': lang,
+      'query' : query,
+      'include_adult': 'true'
+    });
+
+    return _getReponse(url);
+  }
 }

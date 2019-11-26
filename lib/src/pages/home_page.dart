@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:peliculas/src/delegates/search_delegate.dart';
 import 'package:peliculas/src/providers/peliculas_provider.dart';
 import 'package:peliculas/src/widgets/card_swiper_widget.dart';
 import 'package:peliculas/src/widgets/movie_horizontal_widget.dart';
@@ -15,7 +16,7 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           title: Text(
             'Peliculas',
-            style: Theme.of(context).textTheme.title,
+            style: TextStyle(fontSize: 25.0, color: Colors.white),
           ),
           backgroundColor: Theme.of(context).accentColor,
           elevation: 0.0,
@@ -23,9 +24,17 @@ class HomePage extends StatelessWidget {
             IconButton(
               icon: Icon(
                 Icons.search,
-                color: Colors.black54,
+                color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () async {
+                
+                var result = await showSearch(
+                  context: context,
+                  delegate: SearchData()
+                );
+                result.uniqueID = '${result.id}-home';
+                Navigator.of(context).pushNamed('detail', arguments: result);
+              },
             )
           ],
         ),
